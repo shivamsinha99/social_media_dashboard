@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- displays site properly based on user's device -->
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <title>Frontend Mentor | Social Media Dashboard </title>
+
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+      }
+
+      .dark_theme {
+        --bg: hsl(230, 17%, 14%);
+        --top-bg: hsl(232, 19%, 15%);
+        --bg-card: hsl(228, 28%, 20%);
+        --text: hsl(228, 34%, 66%);
+        --main-text: hsl(0, 0%, 100%);
+      }
+
+      .light_theme {
+        --bg: hsl(0, 0%, 100%);
+        --top-bg: hsl(225, 100%, 98%);
+        --bg-card: hsl(227, 47%, 96%);
+        --text: hsl(228, 12%, 44%);
+        --main-text: hsl(230, 17%, 14%);
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        background-color: var(--bg);
+        color: var(--text);
+        text-align: center;
+      }
+
+      .content-wrapper {
+        padding: 0 150px;
+      }
+
+      .top {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+      }
+
+      .top_bg {
+        background-color: var(--top-bg);
+        top: 0;
+        width: 100%;
+        height: 250px;
+        position: absolute;
+        z-index: -1;
+        padding: 0 0;
+      } 
+
+      .cards {
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .card {
+        display: flex;
+        justify-content: space-around;
+        width: 240px;
+        height: 215px;
+        margin: 45px 0;
+        padding: 30px 50px;
+        flex-direction: column;
+        /* border-radius: 5px;; */
+        background-color: var(--bg-card);
+      }      
+
+      .username {
+        vertical-align: top;
+      }
+
+      #twitter {
+        border-top: 5px solid hsl(208, 92%, 53%);
+      }
+
+      #fb {
+        border-top: 5px solid hsl(208, 92%, 53%);
+      }
+
+      #youtube {
+        border-top: 5px solid hsl(348, 97%, 39%);
+      }
+
+      #insta {
+        border-top: 5px solid transparent;
+        border-image: linear-gradient(to right,  hsl(210, 78%, 56%), hsl(146, 68%, 55%));
+        border-image-slice: 1;
+        /* border-radius: 5px; */
+        overflow: hidden;
+      }
+
+      .number {
+        font-size: 50px;
+        color: var(--main-text);
+      }
+
+      .title {
+        color: var(--main-text);
+      }
+
+      .overview {
+        color: var(--main-text);
+        text-align: left;
+      }
+
+      .total_followers {
+        text-align: left;
+      }
+
+      .stats {
+        padding: 25px 0;
+      }
+      
+      .grid-view {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        justify-content: space-around;
+        padding: 30px 0;
+        column-gap: 20px;
+        row-gap: 20px;
+      }
+
+      .overview-card {
+      padding-top: 20px;
+      display: grid;
+      grid-template-columns: auto auto;
+      border-radius: 5px;
+      width: 240px;
+      height: 110px;
+      background-color: var(--bg-card);
+      }
+
+      .todays_number {
+        font-size: 28px;
+        color: var(--main-text);
+      }
+
+      .delta {
+        color: green;
+      }
+
+      .delta_dec {
+        color: red;
+      }
+      
+      .followers {
+        font-weight: 400;
+        letter-spacing: 5px;
+      }
+
+      .toggler {
+        width: 45px;
+        min-width: 45px;
+        height: 24px;
+        margin-left: 10px;
+        background-color: hsl(230, 22%, 74%);
+        border-radius: 20px;
+        cursor: pointer;
+        background-image: var(--toggler);
+      }
+      .toggler-circle {
+        margin: 2px 2px;
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+        background-color: var(--bg);
+        transition: 0.3s;
+        transform: translateX(20px);
+      }
+
+      .toggle {
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+
+  <body class="dark_theme">
+    <div class="top_bg"></div>
+    <div class="content-wrapper">
+      <div class="top">
+        <div>
+          <h1 class="title">Social Media Dashboard</h1>
+          <p class="total_followers">Total Followers: 23,004</p>
+        </div>
+        
+        <div class="toggle">
+          <div>Dark Mode</div>
+          <div class="toggler" id="toggler">
+            <div class="toggler-circle" id="toggler-circle"></div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-center">
+        <div class="cards">
+          <div class="card" id="fb">
+            <div class="username">
+              <img src="images/icon-facebook.svg">
+              @nathanf
+            </div>
+            <div class="stats">
+              <div class="number">1987</div>
+              <div class="followers">Followers</div>
+            </div>
+            <dev class="delta">
+              <img src="images/icon-up.svg">
+              12 Today
+            </dev>
+          </div>
+  
+          <div class="card" id="twitter">
+            <div class="username">
+              <img src="images/icon-twitter.svg">
+              @nathanf
+            </div>
+            <div class="stats">
+              <div class="number">1044</div>
+              <div class="followers">Followers</div>
+            </div>
+            <dev class="delta">
+              <img src="images/icon-up.svg">
+              99 Today
+            </dev>
+          </div>
+  
+          <div class="card" id="insta">
+            <div class="username">
+              <img src="images/icon-instagram.svg">
+              @realnathanf
+            </div>
+            <div class="stats">
+              <div class="number">11k</div>
+              <div class="followers">Followers</div>
+            </div>
+            <dev class="delta">
+              <img src="images/icon-up.svg">
+              1099 Today
+            </dev>
+          </div>
+  
+          <div class="card" id="youtube">
+            <div class="username">
+              <img src="images/icon-youtube.svg">
+              Nathan F.
+            </div>
+            <div class="stats">
+              <div class="number">8239</div>
+              <div class="followers">Subscribers</div>
+            </div>
+            <dev class="delta">
+              <img src="images/icon-up.svg">
+              144 Today
+            </dev>
+          </div>
+  
+  
+        </div>
+      </div>
+      <div class="overview">
+        <h1>Overview - Today</h1>
+      </div>
+  
+      <div class="grid-view">
+        <div class="overview-card">
+          <div class="subtitle">
+            Page Views
+          </div>
+          <div class="grid_icon">
+            <img src="images/icon-facebook.svg">
+          </div>
+          <div class="todays_number">
+            87
+          </div>
+          <div class="delta">
+            <img src="images/icon-up.svg">
+            3%
+          </div>
+        </div>
+        <div class="overview-card">
+            <div class="subtitle">
+              Likes
+            </div>
+            <div class="grid_icon">
+              <img src="images/icon-facebook.svg">
+            </div>
+            <div class="todays_number">
+              52
+            </div>
+            <div class="delta_dec">
+              <img src="images/icon-down.svg">
+              2%
+            </div>
+        </div>
+        <div class="overview-card">
+            <div class="subtitle">
+              Likes
+            </div>
+            <div class="grid_icon">
+              <img src="images/icon-instagram.svg">
+            </div>
+            <div class="todays_number">
+              5462
+            </div>
+            <div class="delta">
+              <img src="images/icon-up.svg">
+              2257%
+            </div>
+        </div>
+        <div class="overview-card">
+            <div class="subtitle">
+              Profile Views
+            </div>
+            <div class="grid_icon">
+              <img src="images/icon-instagram.svg">
+            </div>
+            <div class="todays_number">
+              52k
+            </div>
+            <div class="delta">
+              <img src="images/icon-up.svg">
+              1375%
+            </div>
+        </div>
+        <div class="overview-card">
+            <div class="subtitle">
+              Retweets
+            </div>
+            <div class="grid_icon">
+              <img src="images/icon-twitter.svg">
+            </div>
+            <div class="todays_number">
+              117
+            </div>
+            <div class="delta">
+              <img src="images/icon-up.svg">
+              303%
+            </div>
+        </div>
+        <div class="overview-card">
+            <div class="subtitle">
+              Likes
+            </div>
+            <div class="grid_icon">
+              <img src="images/icon-twitter.svg">
+            </div>
+            <div class="todays_number">
+              507
+            </div>
+            <div class="delta">
+              <img src="images/icon-up.svg">
+              553%
+            </div>
+        </div>
+        <div class="overview-card">
+            <div class="subtitle">
+              Likes
+            </div>
+            <div class="grid_icon">
+              <img src="images/icon-youtube.svg">
+            </div>
+            <div class="todays_number">
+              107
+            </div>
+            <div class="delta_dec">
+              <img src="images/icon-down.svg">
+              19%
+            </div>
+        </div>
+        <div class="overview-card">
+          <div class="subtitle">
+            Total Views
+          </div>
+          <div class="grid_icon">
+            <img src="images/icon-youtube.svg">
+          </div>
+          <div class="todays_number">
+            1407
+          </div>
+          <div class="delta_dec">
+            <img src="images/icon-down.svg">
+            12%
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+      Coded by <a href="https://github.com/shivamsinha99">Shivam Sinha</a>.
+    </div>
+
+    <script>
+      const toggler = document.getElementById("toggler-circle");
+      const togglerbg = document.getElementById("toggler");
+
+      const body = document.body;
+      togglerbg.addEventListener("click", function () {
+        if (body.classList.contains("dark_theme")) {
+          body.classList.replace("dark_theme", "light_theme");
+          toggler.style.transform= "translateX(0)";
+        } else {
+          body.classList.replace("light_theme", "dark_theme");
+          toggler.style.transform = "translateX(20px)";
+        }
+      });
+
+    </script>
+
+  </body>
+
+</html>
